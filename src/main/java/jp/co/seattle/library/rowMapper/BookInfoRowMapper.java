@@ -16,12 +16,12 @@ public class BookInfoRowMapper implements RowMapper<BookInfo> {
         // Query結果（ResultSet rs）を、オブジェクトに格納する実装
         BookInfo bookInfo = new BookInfo();
         // bookInfoの項目と、取得した結果(rs)のカラムをマッピングする
-        bookInfo.setBookId(rs.getInt("ID"));
-        bookInfo.setTitle(rs.getString("TITLE"));
-        bookInfo.setThumbnail(rs.getString("THUMBNAIL_URL"));
-        bookInfo.setPublisher(rs.getString("PUBLISHER"));
-        bookInfo.setPublishDate(rs.getString("PUBLISH_DATE"));
-        bookInfo.setAuthor(rs.getString("AUTHOR"));
+        bookInfo.setBookId(rs.getInt("id"));
+        bookInfo.setTitle(rs.getString("title"));
+        bookInfo.setThumbnail(rs.getString("thumbnail_url"));
+        bookInfo.setPublisher(rs.getString("publisher"));
+        bookInfo.setPublishDate(rs.getString("publish_date"));
+        bookInfo.setAuthor(rs.getString("author"));
         return bookInfo;
     }
 
