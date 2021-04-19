@@ -37,7 +37,6 @@
                         <input type="submit" class="button primary" value="作成する" >
                     </form>
                 </div>
-                <div class="error_msg">${resultMessage}</div>
                 <div class="authorization_navi">
                     <label class="authorization_text">すでにアカウントをお持ちですか？</label>
                     <form method="get" action="<%=request.getContextPath()%>/">
