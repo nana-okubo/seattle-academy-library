@@ -26,7 +26,7 @@
                     <form method="post" action="createAccount">
                         <div class="title">アカウントの作成</div>
                         <label class="label">メールアドレス</label>
-                        <input type="email" class="input" id="email" name="email" autocomplete="off" required>
+                        <input type="text" class="input" id="email" name="email" autocomplete="off" required>
                         <label class="label">パスワード</label>
                         <input type="password" class="input" id="password" name="password" required>
                         <label class="label">パスワード（確認用）</label>                        
