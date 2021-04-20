@@ -15,11 +15,13 @@ public class BookInfoRowMapper implements RowMapper<BookInfo> {
     public BookInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
         // Query結果（ResultSet rs）を、オブジェクトに格納する実装
         BookInfo bookInfo = new BookInfo();
-
         // bookInfoの項目と、取得した結果(rs)のカラムをマッピングする
         bookInfo.setBookId(rs.getInt("id"));
         bookInfo.setTitle(rs.getString("title"));
         bookInfo.setThumbnail(rs.getString("thumbnail_url"));
+        bookInfo.setPublisher(rs.getString("publisher"));
+        bookInfo.setPublishDate(rs.getString("publish_date"));
+        bookInfo.setAuthor(rs.getString("author"));
         return bookInfo;
     }
 
