@@ -74,4 +74,10 @@ public class BooksService {
 
         jdbcTemplate.update(sql);
     }
+
+    public void deletingSystem(int bookId) {
+        String sql = "DELETE FROM books WHERE id =" + bookId + ";";
+        jdbcTemplate.update(sql);
+
+    }
 }
