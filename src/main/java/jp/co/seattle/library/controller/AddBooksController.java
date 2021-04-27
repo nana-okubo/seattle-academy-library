@@ -71,11 +71,12 @@ public class AddBooksController {
         bookInfo.setIsbn(isbn);
         bookInfo.setDescription(description);
 
+
         boolean isIsbnForCheck = isbn.matches("(^\\d{10,13}$)?");
 
 
         if (!isIsbnForCheck) {
-            model.addAttribute("error", "10字または13字の数字を入力してください");
+            model.addAttribute("error3", "10字または13字の数字を入力してください");
             return "addBook";
 
         }
@@ -122,8 +123,8 @@ public class AddBooksController {
         //  詳細画面に遷移す
 
 
-        int newIddayoo = booksService.bookInfoDetailsback();
-        BookDetailsInfo newIdInfo = booksService.getBookInfo(newIddayoo);
+        int newIdCreation = booksService.bookInfoDetailsback();
+        BookDetailsInfo newIdInfo = booksService.getBookInfo(newIdCreation);
         model.addAttribute("bookDetailsInfo", newIdInfo);
 
         return "details";

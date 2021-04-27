@@ -64,8 +64,9 @@
                             <input type="text" name="title" value="${bookInfo.title}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="title" autocomplete="off">
+                            <input type="text" name="title" autocomplete="off" required >
                         </c:if>
+                        
                     </div>
                     <div>
                         <span>著者名</span><span class="care care2">必須</span>
@@ -73,7 +74,7 @@
                             <input type="text" name="author" value="${bookInfo.author}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="author" autocomplete="off">
+                            <input type="text" name="author" autocomplete="off" required>
                         </c:if>
                     </div>
                     <div>
@@ -82,7 +83,7 @@
                             <input type="text" name="publisher" value="${bookInfo.publisher}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="publisher">
+                            <input type="text" name="publisher" autocomplete="off" required>
                         </c:if>
                     </div>
                     <div>
@@ -91,7 +92,7 @@
                             <input type="text" name="publishDate" value="${bookInfo.publishDate}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="publishDate">
+                            <input type="text" name="publishDate" autocomplete="off" required>
                         </c:if>
                         <c:if test="${!empty error1}">
                             <div class="error">${error1}</div>
@@ -103,7 +104,7 @@
                             <input type="text" name="isbn" value="${book.isbn}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="isbn">
+                            <input type="text" name="isbn" autocomplete="off">
                         </c:if>
                         <c:if test="${!empty error}">
                             <div class="error">${error}</div>
@@ -115,7 +116,7 @@
                             <input type="text" name="description" value="${book.description}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="description">
+                            <input type="text" name="description" autocomplete="off">
                         </c:if>
                     </div>
                     <input type="hidden" id="bookId" name="bookId" value="${bookInfo.bookId}">
