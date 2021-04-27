@@ -35,6 +35,7 @@ public class BookInfo {
         this.publisher = publisher;
         this.publishDate = publishDate;
         this.thumbnail = thumbnail;
+
     }
 
 }

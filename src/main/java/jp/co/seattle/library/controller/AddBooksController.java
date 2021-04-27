@@ -1,5 +1,8 @@
 package jp.co.seattle.library.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -52,6 +55,9 @@ public class AddBooksController {
             @RequestParam("title") String title,
             @RequestParam("author") String author,
             @RequestParam("publisher") String publisher,
+            @RequestParam("publishDate") String publishDate,
+            @RequestParam("isbn") String isbn,
+            @RequestParam("description") String description,
             @RequestParam("thumbnail") MultipartFile file,
             Model model) {
         logger.info("Welcome insertBooks.java! The client locale is {}.", locale);
@@ -61,7 +67,34 @@ public class AddBooksController {
         bookInfo.setTitle(title);
         bookInfo.setAuthor(author);
         bookInfo.setPublisher(publisher);
+        bookInfo.setPublishDate(publishDate);
+        bookInfo.setIsbn(isbn);
+        bookInfo.setDescription(description);
 
+
+        boolean isIsbnForCheck = isbn.matches("(^\\d{10,13}$)?");
+        boolean errorCheck = false;
+
+        if (!isIsbnForCheck) {
+            model.addAttribute("error3", "ISBNの桁数または半角数字が正しくありません");
+            errorCheck = true;
+
+        }
+
+
+        try {
+            DateFormat df = new SimpleDateFormat("yyyyMMdd");
+            df.setLenient(false); //そういうもん
+            df.parse(publishDate);
+
+        } catch (ParseException p) {
+            model.addAttribute("error1", "出版日は半角数字のYYYYMMDDを形式で入力してください");
+            errorCheck = true;
+        }
+        
+        if (errorCheck) {
+        return "addBook";
+        }
         // クライアントのファイルシステムにある元のファイル名を設定する
         String thumbnail = file.getOriginalFilename();
 
@@ -90,7 +123,13 @@ public class AddBooksController {
         model.addAttribute("resultMessage", "登録完了");
 
         // TODO 登録した書籍の詳細情報を表示するように実装
-        //  詳細画面に遷移する
+        //  詳細画面に遷移す
+
+
+        int newIdCreation = booksService.bookInfoDetailsback();
+        BookDetailsInfo newIdInfo = booksService.getBookInfo(newIdCreation);
+        model.addAttribute("bookDetailsInfo", newIdInfo);
+
         return "details";
     }
 
