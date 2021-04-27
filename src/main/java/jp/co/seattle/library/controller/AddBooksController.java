@@ -73,11 +73,11 @@ public class AddBooksController {
 
 
         boolean isIsbnForCheck = isbn.matches("(^\\d{10,13}$)?");
-
+        boolean errorCheck = false;
 
         if (!isIsbnForCheck) {
-            model.addAttribute("error3", "10字または13字の数字を入力してください");
-            return "addBook";
+            model.addAttribute("error3", "ISBNの桁数または半角数字が正しくありません");
+            errorCheck = true;
 
         }
 
@@ -88,10 +88,13 @@ public class AddBooksController {
             df.parse(publishDate);
 
         } catch (ParseException p) {
-            model.addAttribute("error1", "年月日を入力してください");
-            return "addBook";
+            model.addAttribute("error1", "出版日は半角数字のYYYYMMDDを形式で入力してください");
+            errorCheck = true;
         }
-
+        
+        if (errorCheck) {
+        return "addBook";
+        }
         // クライアントのファイルシステムにある元のファイル名を設定する
         String thumbnail = file.getOriginalFilename();
 
