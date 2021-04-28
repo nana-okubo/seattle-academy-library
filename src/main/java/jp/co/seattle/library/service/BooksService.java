@@ -65,15 +65,15 @@ public class BooksService {
      */
     public void registBook(BookDetailsInfo bookInfo) {
 
-        String sql = "INSERT INTO books (title, author,publisher,publish_Date,isbn,description,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
+        String sql = "INSERT INTO books (title, author,publisher,publish_date,isbn,description,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
                 + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
                 + bookInfo.getPublishDate() + "','" 
-                + bookInfo.getIsbn() + "','"
-                + bookInfo.getDescription() + "','"
                 + bookInfo.getThumbnailName() + "','"
                 + bookInfo.getThumbnailUrl() + "',"
                 + "sysdate()" + ","
-                + "sysdate()" + ");";
+                + "sysdate()" + ","
+                + bookInfo.getIsbn() + "','"
+                + bookInfo.getDescription() + ");";
 
         jdbcTemplate.update(sql);
     }
@@ -88,6 +88,21 @@ public class BooksService {
         String sql = "SELECT MAX(ID) FROM books;";
         int newestId = jdbcTemplate.queryForObject(sql, Integer.class);
         return newestId;
+    }
+
+    public void updateBook(BookDetailsInfo bookInfo) {
+        String sql = "UPDATE books SET title='" + bookInfo.getTitle()
+                + "',author='" + bookInfo.getAuthor()
+                + "',publisher='" + bookInfo.getPublisher()
+                + "',publish_date='" + bookInfo.getPublishDate()
+                + "',upd_date=sysdate()"
+                + ",thumbnail_name='" + bookInfo.getThumbnailName()
+                + "',thumbnail_url='" + bookInfo.getThumbnailUrl()
+                + "',isbn='" + bookInfo.getIsbn()
+                + "',description='" + bookInfo.getDescription()
+                + "' WHERE ID=" + bookInfo.getBookId() + ";";
+
+        jdbcTemplate.update(sql);
     }
 
 }
