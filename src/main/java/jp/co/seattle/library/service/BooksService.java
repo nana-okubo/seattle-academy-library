@@ -65,15 +65,15 @@ public class BooksService {
      */
     public void registBook(BookDetailsInfo bookInfo) {
 
-        String sql = "INSERT INTO books (title, author,publisher,publish_date,isbn,description,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
+        String sql = "INSERT INTO books (title, author,publisher,publish_Date,isbn,description,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
                 + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
                 + bookInfo.getPublishDate() + "','" 
+                + bookInfo.getIsbn() + "','"
+                + bookInfo.getDescription() + "','"
                 + bookInfo.getThumbnailName() + "','"
                 + bookInfo.getThumbnailUrl() + "',"
                 + "sysdate()" + ","
-                + "sysdate()" + ","
-                + bookInfo.getIsbn() + "','"
-                + bookInfo.getDescription() + ");";
+                + "sysdate()" + ");";
 
         jdbcTemplate.update(sql);
     }

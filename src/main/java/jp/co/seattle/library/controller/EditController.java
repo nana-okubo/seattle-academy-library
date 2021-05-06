@@ -33,6 +33,13 @@ public class EditController {
     @Autowired
     private ThumbnailService thumbnailService;
 
+    /**
+     * HTMLから詳細画面に遷移
+     * @param locale　ロケール情報
+     * @param bookId　編集した本のID
+     * @param model　モデル
+     * @return　遷移先画面
+     */
     @RequestMapping(value = "/editBook", method = RequestMethod.POST) //value＝actionで指定したパラメータ
     //RequestParamでname属性を取得
     //details.jspの編集ボタンを押すとここに飛ぶ
@@ -47,6 +54,20 @@ public class EditController {
     }
 
     //更新ボタンを押した時の話
+    /**
+     * 書籍の編集
+     * @param locale　ロケール情報
+     * @param title　書籍名
+     * @param author　著者名
+     * @param publisher　出版社
+     * @param publishDate　出版日
+     * @param isbn　ISBN
+     * @param description　説明文
+     * @param file　サムネイルファイル
+     * @param bookId　本のID
+     * @param model　モデル
+     * @return　遷移先画面
+     */
     @Transactional
     @RequestMapping(value = "/updateBook", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     public String updateBook(Locale locale,
@@ -118,9 +139,6 @@ public class EditController {
         // 書籍情報を更新する　修正
         booksService.updateBook(bookInfo);
 
-        model.addAttribute("resultMessage", "編集完了");
-
-        booksService.getBookInfo(bookId);
         model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
         // TODO 更新した書籍の詳細情報を表示するように実装
         //  詳細画面に遷移す
