@@ -90,4 +90,19 @@ public class BooksService {
         return newestId;
     }
 
+    public void updateBook(BookDetailsInfo bookInfo) {
+        String sql = "UPDATE books SET title='" + bookInfo.getTitle()
+                + "',author='" + bookInfo.getAuthor()
+                + "',publisher='" + bookInfo.getPublisher()
+                + "',publish_date='" + bookInfo.getPublishDate()
+                + "',upd_date=sysdate()"
+                + ",thumbnail_name='" + bookInfo.getThumbnailName()
+                + "',thumbnail_url='" + bookInfo.getThumbnailUrl()
+                + "',isbn='" + bookInfo.getIsbn()
+                + "',description='" + bookInfo.getDescription()
+                + "' WHERE ID=" + bookInfo.getBookId() + ";";
+
+        jdbcTemplate.update(sql);
+    }
+
 }
